@@ -3,7 +3,8 @@
 {% extends 'base.html'%}
 {% block content %}
 
-<h1>Home page</h1>
+
+<h1>Profile page</h1>
 
 <div class="container">
     <h1 class="text-center my-3">Show Musicians</h1>
@@ -17,19 +18,23 @@
             <th scope="col">Instrument Type</th>
             <th scope="col">Album Name</th>
             <th scope="col">Release Date</th>
-          
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
             {% for i in dataAlbum %}
           <tr>
             <th scope="row">{{i.id}}</th>
-            <td>{{i.musician.firstName}} {{i.musician.lastName}}</td>
+            <td><a href="{% url 'edit_musician' i.musician.id %}">{{i.musician.firstName}} {{i.musician.lastName}}</a></td>
             <td>{{i.musician.email}}</td>
             <td>{{i.rating}}</td>
             <td>{{i.musician.InstrumentType}}</td>
             <td>{{i.albumName}}</td>
             <td>{{i.albumReleaseDate}}</td>
+            <td>
+                <a href="{% url 'edit_album' i.id %}">Edit</a> 
+                <a href="{% url 'delete_album' i.id %}">Delete</a>
+            </td>
           </tr>
 
           {% endfor %} 
